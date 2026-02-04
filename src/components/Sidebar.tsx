@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type React from "react";
 import type { Constraints, RoomType } from "../engine/layoutTypes";
-import { ROOM_TYPES, regulationDefaults } from "../state/defaults";
+import { ROOM_TYPES } from "../state/defaults";
 
 type SidebarProps = {
   constraints: Constraints;
@@ -27,13 +27,15 @@ const formatM2 = (value: number) => (Number.isFinite(value) ? value.toFixed(2) :
 type RoomConstraintUpdate = (room: Constraints["perRoom"][RoomType]) => Constraints["perRoom"][RoomType];
 
 export const Sidebar = ({ constraints, onConstraintsChange, generationCount, onGenerationCountChange, onGenerate }: SidebarProps) => {
-  const [drafts, setDrafts] = useState<Record<
-    RoomType,
-    {
-      minDim?: string;
-      maxDim?: string;
-      minArea?: string;
-    }
+  const [drafts, setDrafts] = useState<Partial<
+    Record<
+      RoomType,
+      {
+        minDim?: string;
+        maxDim?: string;
+        minArea?: string;
+      }
+    >
   >>({});
   const updateConstraint = <K extends keyof Constraints>(key: K, value: Constraints[K]) => {
     onConstraintsChange({ ...constraints, [key]: value });

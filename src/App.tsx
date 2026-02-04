@@ -20,7 +20,6 @@ function App() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
-  const [isGenerating, setIsGenerating] = useState(false);
   const [shouldReveal, setShouldReveal] = useState(true);
   const skipFirstConstraintRun = useRef(true);
   const regenerateTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -53,7 +52,6 @@ function App() {
     setLayouts([]);
     setSelectedIndex(null);
     setIsModalOpen(false);
-    setIsGenerating(manual);
     const count = getSafeGenerationCount();
 
     const seenSeeds = new Set<string>();
@@ -90,9 +88,6 @@ function App() {
         await sleep(0);
       }
     } finally {
-      if (manual) {
-        setIsGenerating(false);
-      }
       if (!hasShownInitialReveal.current) {
         hasShownInitialReveal.current = true;
       }
