@@ -24,19 +24,13 @@ const clamp = (value: number, min: number, max: number) => Math.min(Math.max(val
 const roundToStep = (value: number, step: number) => Math.round(value / step) * step;
 const formatM2 = (value: number) => (Number.isFinite(value) ? value.toFixed(2) : "");
 
+type DraftField = "minDim" | "maxDim" | "minArea";
+type DraftsState = Partial<Record<RoomType, Partial<Record<DraftField, string>>>>;
+
 type RoomConstraintUpdate = (room: Constraints["perRoom"][RoomType]) => Constraints["perRoom"][RoomType];
 
 export const Sidebar = ({ constraints, onConstraintsChange, generationCount, onGenerationCountChange, onGenerate }: SidebarProps) => {
-  const [drafts, setDrafts] = useState<Partial<
-    Record<
-      RoomType,
-      {
-        minDim?: string;
-        maxDim?: string;
-        minArea?: string;
-      }
-    >
-  >>({});
+  const [drafts, setDrafts] = useState<DraftsState>({});
   const updateConstraint = <K extends keyof Constraints>(key: K, value: Constraints[K]) => {
     onConstraintsChange({ ...constraints, [key]: value });
   };
@@ -51,7 +45,7 @@ export const Sidebar = ({ constraints, onConstraintsChange, generationCount, onG
     });
   };
 
-  const setDraft = (room: RoomType, field: keyof (typeof drafts)[RoomType], value?: string) => {
+  const setDraft = (room: RoomType, field: DraftField, value?: string) => {
     setDrafts((prev) => ({
       ...prev,
       [room]: {
