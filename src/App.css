@@ -18,6 +18,57 @@
   gap: 16px;
 }
 
+.topbar-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.icon-button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d5d8dc;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.icon-button:hover {
+  background: #ffffff;
+}
+
+button.icon-button {
+  background: #ffffff;
+}
+
+button.icon-button:hover,
+button.icon-button:active,
+button.icon-button:focus-visible {
+  background: #ffffff;
+}
+
+.icon-button:hover {
+  border-color: #aeb4bc;
+}
+
+.icon-button .header-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  color: #111318;
+}
+
+.info-button {
+  font-size: 1.08rem;
+  line-height: 1;
+  color: #0c0f14;
+  font-weight: 600;
+}
+
 .topbar-logo {
   width: 84px;
   height: 84px;
@@ -233,6 +284,30 @@ button.primary {
 
 button.ghost {
   background: #f4f5f6;
+}
+
+.icon-button,
+button.icon-button,
+a.icon-button {
+  background: #ffffff;
+}
+
+.icon-button:hover,
+button.icon-button:hover,
+a.icon-button:hover {
+  background: #f4f5f6;
+}
+
+.icon-button:active,
+button.icon-button:active,
+a.icon-button:active {
+  background: #e8eaef;
+}
+
+.icon-button:focus-visible,
+button.icon-button:focus-visible,
+a.icon-button:focus-visible {
+  background: #ffffff;
 }
 
 .toggle {
